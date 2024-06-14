@@ -1,0 +1,52 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.Impl.UserDaoImpl;
+import com.example.model.User;
+import com.example.service.userService;
+
+@Service
+public class UserServiceImpl implements userService {
+	
+	@Autowired
+	UserDaoImpl userDao;
+	
+	@Override 
+	public List<User> findAllUsers(){
+		return userDao.findAllUsers();
+	}
+
+	@Override
+	public User findUserById(int id) {
+		// TODO Auto-generated method stub
+		return Repository.;
+	}
+
+	@Override
+	public List<User> findCustomerByLastName(String lastname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public List<User> findCustomerByFirstName(String firstname) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User saveCustomer(User user) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void deleteCustomerById(int id) {
+		// TODO Auto-generated method stub
+		
+	}
+}

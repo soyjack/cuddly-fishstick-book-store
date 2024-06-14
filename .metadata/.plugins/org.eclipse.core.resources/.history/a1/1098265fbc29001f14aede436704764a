@@ -1,0 +1,93 @@
+package com.example.controller;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.annotations.Parameter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.model.Book;
+import com.example.model.User;
+import com.example.service.userService;
+import com.example.service.impl.BookServiceImpl;
+import com.example.service.impl.UserServiceImpl;
+
+@RestController
+public class BookController {
+	private final Logger logger = LoggerFactory.getLogger(BookController.class);
+	@Autowired
+	com.example.service.bookService bookService;
+	@Autowired
+	UserServiceImpl userService;
+	
+	
+	@GetMapping("/book")
+	public ResponseEntity<List<Book>> getBook(){
+		logger.info("Controller "+bookService.getBooks().toString());
+		return new ResponseEntity<>(bookService.getBooks(), HttpStatus.OK);
+	}
+	
+	@GetMapping("/book/{id}")
+	public ResponseEntity<Book> findBook(@PathVariable("id") int id){
+		logger.info("Controller "+bookService.getBooks().toString());
+		return new ResponseEntity<>(bookService.findBookById(id), HttpStatus.OK);
+	}
+	
+	@PostMapping("/book")
+	public ResponseEntity<Book> saveBook(@RequestBody Book book) {
+		return new ResponseEntity<>(bookService.saveBook(book), HttpStatus.CREATED);
+	}
+	
+//	@PutMapping("/updateBook")
+//	public ResponseEntity<String> updateBook(@RequestBody Book book) {
+//		bookService.saveBook(book);
+//		return ResponseEntity.ok("Book Added");
+//	}
+	
+	@DeleteMapping("/book/{id}")
+	public ResponseEntity<String> deleteBookById(@PathVariable int id) {
+		Book book=bookService.findBookById(id);
+		
+		if(book !=null) {
+			bookService.deleteBookById(id)
+			return new ResponseEntity<>("Book is deleted", HttpStatus.OK);
+		}else {
+			return new ResponseEntity("Book is not found", null);
+		}
+		
+	}
+	
+	@GetMapping("/user/{id}")
+	public User getUser(@PathVariable("id") int userId) {
+		return userService.findUserById(userId);
+	}
+	
+	@PostMapping("/user")
+	public ResponseEntity<String> saveUser(@RequestBody User user) {
+		userService.saveUser(user);
+		return ResponseEntity.ok("User Added");
+	}
+	
+	@DeleteMapping("/deleteUser/{id}")
+	public String deleteUserById(@PathVariable int id) {
+		User user=userService.findUserById(id);
+		
+		if(user !=null) {
+			bookService.deleteBookById(id);
+			return "Book has been deleted";
+		}else {
+			return "Book not found ";
+		}
+	}
+}

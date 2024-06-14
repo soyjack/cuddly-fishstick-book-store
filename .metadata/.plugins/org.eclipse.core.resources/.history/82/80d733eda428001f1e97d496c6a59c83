@@ -1,0 +1,14 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import com.example.model.User;
+import com.example.serv.userService;
+
+public class UserServiceImpl implements userService {
+	
+	@Override 
+	public List<User> findAllUsers(){
+		return null;
+	}
+}

@@ -1,0 +1,25 @@
+package com.example.dao.Impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.example.dao.bookDao;
+import com.example.model.Book;
+
+@Repository
+public class BookDaoImpl implements bookDao {
+	
+	@Override
+	public List<Book> findAllBooks(){
+		Book book1 = new Book(1, "Atomic Habits", "Self-help");
+		Book book2 = new Book(1, "Java Tutorials", "Educational");
+		Book book3 = new Book(1, "The Secret", "Non-fiction");
+		
+		
+		List<Book> list = new ArrayList<>();
+		list.add(book1);
+		list.add(book2);
+		list.add(book3);
+	}
+}

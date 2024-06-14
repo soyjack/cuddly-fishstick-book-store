@@ -1,0 +1,10 @@
+package com.example.service;
+
+import java.util.List;
+
+import com.example.model.Book;
+import com.example.model.User;
+
+public interface userService {
+	public List<User> findAllUsers();
+}

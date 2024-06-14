@@ -1,0 +1,50 @@
+package com.example.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.bookDao;
+import com.example.dao.Impl.BookDaoImpl;
+import com.example.model.Book;
+import com.example.service.bookService;
+
+@Service
+public class BookServiceImpl implements bookService{
+	
+	@Autowired
+	bookDao bookD;
+	
+	@Override
+	public List<Book> getBooks(){
+		Iterable<Book> books = bookD.findAll();
+		List<Book> list = new ArrayList<>();
+		books.forEach(list::add);
+		return list;
+	}
+
+	@Override
+	public Book saveBook(Book book) {
+		// TODO Auto-generated method stub
+		return bookD.save(book);
+	}
+
+	@Override
+	public void deleteBookById(int id) {
+		// TODO Auto-generated method stub
+		bookD.deleteById(id);
+	}
+
+	@Override
+	public Book findBookById(int id) {
+		// TODO Auto-generated method stub
+		Optional<Book> book = Optional.of(bookD.findById(id));
+		if(book.isPresent()) {
+			return book.get();
+		}
+		return null;
+	}
+}

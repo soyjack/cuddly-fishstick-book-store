@@ -1,0 +1,22 @@
+package com.example.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.example.dao.Impl.UserDaoImpl;
+import com.example.model.User;
+import com.example.service.userService;
+
+@Service
+public class UserServiceImpl implements userService {
+	
+	@Autowired
+	UserDaoImpl userDao;
+	
+	@Override 
+	public List<User> findAllUsers(){
+		return userDao.findAllUsers();
+	}
+}

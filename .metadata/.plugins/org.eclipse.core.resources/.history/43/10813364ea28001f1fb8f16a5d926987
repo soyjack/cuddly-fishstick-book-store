@@ -1,0 +1,17 @@
+package com.example.service;
+
+import java.util.List;
+
+import com.example.model.Book;
+import com.example.model.User;
+
+public interface userService {
+	public User findUserById(int id);
+	public List<User> findCustomerByLastName(String lastname);
+	public List<User> findCustomerByFirstName(String firstname);
+	public User saveCustomer(User user);
+	public void deleteCustomerById(int id );
+	public List<User> findAllUsers();
+	
+}
+

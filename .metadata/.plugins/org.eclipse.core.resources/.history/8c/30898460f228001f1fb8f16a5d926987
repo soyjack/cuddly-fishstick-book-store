@@ -1,0 +1,18 @@
+package com.example.dao;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import com.example.model.User;
+
+@Repository
+public interface userDao extends CrudRepository<User, Integer>{
+	public List<User> findByLastName(String lastname);
+	public User findById(long id);
+	public List<User> findByFirstName(String firstName);
+	public List<User> findAllUsers();
+	public User save(User user);
+	public void deleteUserById(int id);
+}
